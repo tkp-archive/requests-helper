@@ -3734,6 +3734,11 @@ request@^2.87.0:
     tunnel-agent "^0.6.0"
     uuid "^3.3.2"
 
+requests-helper@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/requests-helper/-/requests-helper-0.1.0.tgz#763b15e11267b105bac80dc6adfe4225ca7366a2"
+  integrity sha512-88e44RsxFogimpjLgBtpChOJIUPt19iCcLorDeWNizCxouYmhLAJLD/E+9OuYxAQux9JYqdmoace+hW1CKU9/w==
+
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
