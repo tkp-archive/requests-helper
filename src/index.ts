@@ -4,6 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 export interface IRequestOptions {
+  blob?: boolean;
   ignoreCache?: boolean;
   headers?: {[key: string]: string};
   // 0 (or negative) to wait forever
@@ -11,6 +12,7 @@ export interface IRequestOptions {
 }
 
 export const DEFAULT_REQUEST_OPTIONS = {
+  blob: false,
   headers: {
     Accept: "application/json, text/javascript, text/plain",
   },
@@ -40,9 +42,9 @@ function withQuery(url: string, params: any = {}) {
   return queryString ? url + (url.indexOf("?") === -1 ? "?" : "&") + queryString : url;
 }
 
-function parseXHRResult(xhr: XMLHttpRequest): IRequestResult {
+function parseXHRResult(xhr: XMLHttpRequest, blob: boolean = false): IRequestResult {
   return {
-    data: xhr.responseText,
+    data: blob ? (xhr.response) : (xhr.responseText),
     headers: xhr.getAllResponseHeaders(),
     json: <T>() => JSON.parse(xhr.responseText) as T,
     ok: xhr.status >= 200 && xhr.status < 300,
@@ -72,7 +74,7 @@ export function request(method: "get" | "post",
     const ignoreCache = options.ignoreCache || DEFAULT_REQUEST_OPTIONS.ignoreCache;
     const headers = options.headers || DEFAULT_REQUEST_OPTIONS.headers;
     const timeout = options.timeout || DEFAULT_REQUEST_OPTIONS.timeout;
-
+    const blob = options.blob || DEFAULT_REQUEST_OPTIONS.blob;
     return new Promise<IRequestResult>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, withQuery(url, queryParamsOther));
@@ -88,7 +90,7 @@ export function request(method: "get" | "post",
     xhr.timeout = timeout;
 
     xhr.onload = (evt) => {
-      resolve(parseXHRResult(xhr));
+      resolve(parseXHRResult(xhr, blob));
     };
 
     xhr.onerror = (evt) => {
