@@ -1,6 +1,6 @@
 {
   "name": "requests-helper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A helper for web requests",
   "main": "lib/index.js",
   "repository": "git@github.com:timkpaine/requests-helper.git",
