@@ -1,0 +1,34 @@
+{
+  "name": "requests-helper",
+  "version": "0.1.0",
+  "description": "A helper for web requests",
+  "main": "index.js",
+  "repository": "git@github.com:timkpaine/requests-helper.git",
+  "author": "Tim Paine <t.paine154@gmail.com>",
+  "license": "Mozilla Public License 2.0",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "lint": "./node_modules/.bin/tslint './src/*.ts'",
+    "prepublishOnly": "npm run build",
+    "test": "jest --coverage --collectCoverageFrom=src/*.{ts}"
+  },
+  "files": [
+    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "style/**/*.css"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "@types/jest": "^24.0.4",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.1.0",
+    "jest-transform-css": "^2.0.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.1",
+    "ts-jest": "^23.10.4",
+    "tslint": "^5.14.0",
+    "typescript": "^3.1.6"
+  }
+}
