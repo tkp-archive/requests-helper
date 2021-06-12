@@ -17,8 +17,7 @@
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
     "style/**/*.css"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/preset-env": "^7.5.5",
     "@types/jest": "^24.0.4",
@@ -34,6 +33,7 @@
   "resolutions": {
     "acorn": "^6.4.1",
     "kind-of": "^6.0.3",
-    "minimist": "^0.2.1"
+    "minimist": "^0.2.1",
+    "postcss": "^8.2.10"
   }
 }
