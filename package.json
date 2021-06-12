@@ -34,6 +34,8 @@
     "acorn": "^6.4.1",
     "kind-of": "^6.0.3",
     "minimist": "^0.2.1",
-    "postcss": "^8.2.10"
+    "node-notifier": "^8.0.1",
+    "postcss": "^8.2.10",
+    "yargs-parser": "^13.1.2"
   }
 }
