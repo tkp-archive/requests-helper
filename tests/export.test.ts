@@ -1,7 +1,7 @@
-import * as extension from '../src/index';
+import * as extension from "../src/index";
 
-describe('Checks exports', () => {
+describe("Checks exports", () => {
   test("Check extension", () => {
-     expect(extension);
+    expect(extension);
   });
 });

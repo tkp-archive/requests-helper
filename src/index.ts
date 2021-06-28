@@ -33,8 +33,8 @@ export interface IRequestResult {
 
 function queryParams(params: any = {}) {
   return Object.keys(params)
-      .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
-      .join("&");
+    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
+    .join("&");
 }
 
 function withQuery(url: string, params: any = {}) {
@@ -42,7 +42,7 @@ function withQuery(url: string, params: any = {}) {
   return queryString ? url + (url.indexOf("?") === -1 ? "?" : "&") + queryString : url;
 }
 
-function parseXHRResult(xhr: XMLHttpRequest, blob: boolean = false): IRequestResult {
+function parseXHRResult(xhr: XMLHttpRequest, blob = false): IRequestResult {
   return {
     data: blob ? (xhr.response) : (xhr.responseText),
     headers: xhr.getAllResponseHeaders(),
@@ -71,11 +71,11 @@ export function request(method: "get" | "post",
                         queryParamsOther: any = {},
                         body: any = null,
                         options: IRequestOptions = DEFAULT_REQUEST_OPTIONS) {
-    const ignoreCache = options.ignoreCache || DEFAULT_REQUEST_OPTIONS.ignoreCache;
-    const headers = options.headers || DEFAULT_REQUEST_OPTIONS.headers;
-    const timeout = options.timeout || DEFAULT_REQUEST_OPTIONS.timeout;
-    const blob = options.blob || DEFAULT_REQUEST_OPTIONS.blob;
-    return new Promise<IRequestResult>((resolve, reject) => {
+  const ignoreCache = options.ignoreCache || DEFAULT_REQUEST_OPTIONS.ignoreCache;
+  const headers = options.headers || DEFAULT_REQUEST_OPTIONS.headers;
+  const timeout = options.timeout || DEFAULT_REQUEST_OPTIONS.timeout;
+  const blob = options.blob || DEFAULT_REQUEST_OPTIONS.blob;
+  return new Promise<IRequestResult>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, withQuery(url, queryParamsOther));
 
@@ -112,35 +112,35 @@ export function request(method: "get" | "post",
 
 export function requestFormData(url: string,
                                 formdata: FormData) {
-    const options: IRequestOptions = DEFAULT_REQUEST_OPTIONS;
-    const ignoreCache = options.ignoreCache || DEFAULT_REQUEST_OPTIONS.ignoreCache;
-    const headers = options.headers || DEFAULT_REQUEST_OPTIONS.headers;
-    const timeout = options.timeout || DEFAULT_REQUEST_OPTIONS.timeout;
+  const options: IRequestOptions = DEFAULT_REQUEST_OPTIONS;
+  const ignoreCache = options.ignoreCache || DEFAULT_REQUEST_OPTIONS.ignoreCache;
+  const headers = options.headers || DEFAULT_REQUEST_OPTIONS.headers;
+  const timeout = options.timeout || DEFAULT_REQUEST_OPTIONS.timeout;
 
-    return new Promise<IRequestResult>((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open("post", withQuery(url, queryParams));
+  return new Promise<IRequestResult>((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("post", withQuery(url, queryParams));
 
-      Object.keys(headers).forEach((key) => xhr.setRequestHeader(key, headers[key]));
+    Object.keys(headers).forEach((key) => xhr.setRequestHeader(key, headers[key]));
 
-      if (ignoreCache) {
-        xhr.setRequestHeader("Cache-Control", "no-cache");
-      }
+    if (ignoreCache) {
+      xhr.setRequestHeader("Cache-Control", "no-cache");
+    }
 
-      xhr.timeout = timeout;
+    xhr.timeout = timeout;
 
-      xhr.onload = (evt) => {
-        resolve(parseXHRResult(xhr));
-      };
+    xhr.onload = (evt) => {
+      resolve(parseXHRResult(xhr));
+    };
 
-      xhr.onerror = (evt) => {
-        resolve(errorResponse(xhr, "Failed to make request."));
-      };
+    xhr.onerror = (evt) => {
+      resolve(errorResponse(xhr, "Failed to make request."));
+    };
 
-      xhr.ontimeout = (evt) => {
-        resolve(errorResponse(xhr, "Request took longer than expected."));
-      };
+    xhr.ontimeout = (evt) => {
+      resolve(errorResponse(xhr, "Request took longer than expected."));
+    };
 
-      xhr.send(formdata);
-    });
-  }
+    xhr.send(formdata);
+  });
+}
