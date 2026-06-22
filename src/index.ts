@@ -75,7 +75,7 @@ export function request(method: "get" | "post",
   const headers = options.headers || DEFAULT_REQUEST_OPTIONS.headers;
   const timeout = options.timeout || DEFAULT_REQUEST_OPTIONS.timeout;
   const blob = options.blob || DEFAULT_REQUEST_OPTIONS.blob;
-  return new Promise<IRequestResult>((resolve, reject) => {
+  return new Promise<IRequestResult>((resolve) => {
     const xhr = new XMLHttpRequest();
     xhr.open(method, withQuery(url, queryParamsOther));
 
@@ -118,7 +118,7 @@ export function requestFormData(url: string,
   const headers = options.headers || DEFAULT_REQUEST_OPTIONS.headers;
   const timeout = options.timeout || DEFAULT_REQUEST_OPTIONS.timeout;
 
-  return new Promise<IRequestResult>((resolve, reject) => {
+  return new Promise<IRequestResult>((resolve) => {
     const xhr = new XMLHttpRequest();
     xhr.open("post", withQuery(url, queryParamsOther));
 

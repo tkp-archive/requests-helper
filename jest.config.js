@@ -1,6 +1,6 @@
 module.exports = {
   transform: {
-      "^.+\\.ts?$": "ts-jest",
+      "^.+\\.ts?$": ["ts-jest", { tsconfig: "tsconfig.eslint.json" }],
       "^.+\\.js$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
   },
