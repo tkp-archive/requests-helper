@@ -11,7 +11,7 @@ export interface IRequestOptions {
   timeout?: number;
 }
 
-export const DEFAULT_REQUEST_OPTIONS = {
+export const DEFAULT_REQUEST_OPTIONS: Required<IRequestOptions> = {
   blob: false,
   headers: {
     Accept: "application/json, text/javascript, text/plain",
